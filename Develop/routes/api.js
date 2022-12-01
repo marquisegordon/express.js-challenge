@@ -1,14 +1,17 @@
+// dependencies
 const express = require('express');
 const router = express.Router();
 const { v4: uuidv4 } = require('uuid');
 const { readFromFile, readAndAppend } = require('../helpers/helpers.js');
 
+// /api/notes GET route
 router.get('/api/notes', (req, res) => {
     readFromFile('./db/db.json').then((data) =>
         res.json(JSON.parse(data))
     );
 });
 
+// /api/notes POST route
 router.post('/api/notes', (req, res) => {
     const { title, text } = req.body;
 
