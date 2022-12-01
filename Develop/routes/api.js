@@ -4,7 +4,7 @@ const { v4: uuidv4 } = require('uuid');
 const { readFromFile, readAndAppend } = require('../helpers/helpers.js');
 
 router.get('/api/notes', (req, res) => {
-    readFromFile('../db/db.json').then((data) =>
+    readFromFile('./db/db.json').then((data) =>
         res.json(JSON.parse(data))
     );
 });
@@ -19,7 +19,7 @@ router.post('/api/notes', (req, res) => {
           id: uuidv4(),
         };
     
-        readAndAppend(newNote, './db/tips.json');
+        readAndAppend(newNote, './db/db.json');
         res.json(`Note added successfully`);
       } else {
         res.error('Error in adding tip');
